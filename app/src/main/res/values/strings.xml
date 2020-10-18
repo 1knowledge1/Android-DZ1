@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DZ_1</string>
+    <string name="btn_text">Добавить число</string>
+    <string name="no_value">No value</string>
+</resources>
