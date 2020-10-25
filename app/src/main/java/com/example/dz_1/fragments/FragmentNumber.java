@@ -1,6 +1,5 @@
 package com.example.dz_1.fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,20 +23,17 @@ public class FragmentNumber extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         String text = getString(R.string.no_value);
-        int color = Color.BLUE;
+        int number = 0;
         Bundle arg = getArguments();
         if (arg != null) {
             text = arg.getString(PARAM);
             try {
-                int number = Integer.parseInt(text);
-                if (number % 2 == 0) {
-                    color = Color.RED;
-                }
+                number = Integer.parseInt(text);
             } catch (NumberFormatException | NullPointerException e) {
                 text = getString(R.string.no_value);
             }
         }
-        ((TextView)view.findViewById(R.id.number)).setTextColor(color);
+        ((TextView)view.findViewById(R.id.number)).setTextColor(TextColorDelegate.getTextColor(number));
         ((TextView)view.findViewById(R.id.number)).setText(text);
     }
 
