@@ -30,9 +30,9 @@ public class FragmentRecycler extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
-        try {
+        if (context instanceof onStartFragmentListener) {
             startListener = (onStartFragmentListener) context;
-        } catch (ClassCastException e) {
+        } else {
             throw new ClassCastException(context.toString() + " must implement onStartFragmentListener");
         }
     }
@@ -41,7 +41,7 @@ public class FragmentRecycler extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         int size = 100;
-        if(savedInstanceState != null) {
+        if (savedInstanceState != null) {
             size = savedInstanceState.getInt(SIZE);
         }
         numbers = new ArrayList<>();
@@ -57,7 +57,7 @@ public class FragmentRecycler extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recycler, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
         int colNum = 3;
-        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             colNum = 4;
         }
         recyclerView.setLayoutManager(new GridLayoutManager(context, colNum));
